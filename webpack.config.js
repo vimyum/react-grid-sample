@@ -1,7 +1,9 @@
+const copyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/script/index.tsx",
   output: {
-    filename: "./dist/bundle.js"
+    filename: "./dist/script/bundle.js"
   },
   devtool: "source-map",
   resolve: {
@@ -10,11 +12,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /tsx?$/,
         use: [
           {loader: "ts-loader"}
         ]
       }
     ]
-  }
+  },
+  plugins: [
+      new copyWebpackPlugin([{from: './src/html/', to: './dist/'}]),
+  ],
 };
